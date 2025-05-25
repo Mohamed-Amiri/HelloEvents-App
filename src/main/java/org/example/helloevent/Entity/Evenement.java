@@ -91,4 +91,12 @@ public class Evenement {
     public void setReservations(List<Reservation> reservations) {
         this.reservations = reservations;
     }
+
+    public Evenement orElseThrows(Object productNotFound) {
+        return null;
+    }
+
+    public Evenement orElseThrow(Object eventNotFound) {
+        return null;
+    }
 }

@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping({"/auth"})
 public class AuthController {
@@ -47,17 +49,17 @@ public class AuthController {
     }
     @PostMapping("/login")
     public String login(@RequestBody LoginDTO loginDTO) {
-        User user = userRepository.findByEmail(loginDTO.getEmail());
+        Optional<User> user = userRepository.findByEmail(loginDTO.getEmail());
 
         if (user == null) {
             return "User not found";
         }
 
-        if (!passwordEncoder.matches(loginDTO.getPassword(), user.getPassword())) {
+        if (!passwordEncoder.matches(loginDTO.getPassword(), user.get().getPassword())) {
             return "Invalid password";
         }
 
-        return "Login successful. Welcome " + user.getEmail() + "!";
+        return "Login successful. Welcome " + user.get().getEmail() + "!";
     }
 
 }
