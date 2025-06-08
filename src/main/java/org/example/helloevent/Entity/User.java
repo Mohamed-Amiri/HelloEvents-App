@@ -1,36 +1,23 @@
-package org.example.helloevent.Entity;
+package org.example.helloevent.entity;
 
-import jakarta.persistence.DiscriminatorColumn;
-import jakarta.persistence.DiscriminatorType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
+import jakarta.persistence.*;
 
 @Entity
-@Inheritance(
-        strategy = InheritanceType.SINGLE_TABLE
-)
-@DiscriminatorColumn(
-        name = "role",
-        discriminatorType = DiscriminatorType.STRING
-)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "role", discriminatorType = DiscriminatorType.STRING)
 public abstract class User {
     @Id
-    @GeneratedValue(
-            strategy = GenerationType.IDENTITY
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
+
     protected String email;
     protected String password;
 
-    public User() {
-    }
+    // getters and setters
+
 
     public Long getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(Long id) {
@@ -38,7 +25,7 @@ public abstract class User {
     }
 
     public String getEmail() {
-        return this.email;
+        return email;
     }
 
     public void setEmail(String email) {
@@ -46,7 +33,7 @@ public abstract class User {
     }
 
     public String getPassword() {
-        return this.password;
+        return password;
     }
 
     public void setPassword(String password) {

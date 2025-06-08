@@ -1,7 +1,7 @@
 package org.example.helloevent.service;
 
-import org.example.helloevent.Entity.Admin;
-import org.example.helloevent.Entity.User;
+import org.example.helloevent.entity.Admin;
+import org.example.helloevent.entity.User;
 import org.example.helloevent.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

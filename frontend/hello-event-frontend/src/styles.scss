@@ -1,0 +1,124 @@
+/* You can add global styles to this file, and also import other style files */
+@use 'bootstrap/scss/bootstrap' as *;
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: #f8f9fa;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  color: #222;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  max-width: 1100px;
+}
+
+.navbar {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.footer {
+  font-size: 0.95rem;
+  background: #f8f9fa;
+  border-top: 1px solid #e5e5e5;
+  flex-shrink: 0;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #d1d1d1;
+  border-radius: 4px;
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, #6a82fb 0%, #fc5c7d 100%);
+  border: none;
+}
+
+.btn-outline-primary {
+  border-color: #6a82fb;
+  color: #6a82fb;
+}
+
+.btn-outline-primary:hover {
+  background: #6a82fb;
+  color: #fff;
+}
+
+.card {
+  border-radius: 1rem;
+  box-shadow: 0 2px 12px rgba(80, 80, 120, 0.07);
+}
+
+.form-control:focus {
+  border-color: #6a82fb;
+  box-shadow: 0 0 0 0.2rem rgba(106, 130, 251, 0.15);
+}
+
+/* Custom styles */
+.navbar-brand {
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.nav-link {
+  font-weight: 500;
+  
+  &.active {
+    font-weight: 600;
+  }
+}
+
+/* Card hover effects */
+.card {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Form styles */
+.form-control:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+/* Button styles */
+.btn {
+  font-weight: 500;
+  
+  &:hover {
+    transform: translateY(-1px);
+  }
+}
+
+/* Loading spinner */
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+}
+
+/* Add more custom styles as needed for a modern look */
+
+app-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1 0 auto;
+}

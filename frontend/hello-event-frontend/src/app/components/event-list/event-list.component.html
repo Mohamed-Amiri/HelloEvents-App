@@ -1,0 +1,61 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="fw-bold"><i class="bi bi-calendar2-event-fill text-primary me-2"></i> Events</h1>
+    <button class="btn btn-primary shadow-sm" (click)="createNewEvent()">
+      <i class="bi bi-plus-circle me-1"></i> Create New Event
+    </button>
+  </div>
+
+  <div *ngIf="loading" class="text-center my-5">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <div *ngIf="error" class="alert alert-danger" role="alert">
+    <i class="bi bi-exclamation-triangle me-2"></i>{{ error }}
+  </div>
+
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    <div class="col" *ngFor="let event of events">
+      <div class="card h-100 event-card position-relative">
+        <img [src]="event.imageUrl || 'assets/images/default-event.jpg'"
+             class="card-img-top"
+             [alt]="event.title"
+             style="height: 200px; object-fit: cover;">
+        <span class="badge bg-gradient position-absolute top-0 end-0 m-3 px-3 py-2 fs-6 shadow-sm"
+              [ngClass]="{
+                'bg-success': event.capacity > 0,
+                'bg-danger': event.capacity === 0
+              }">
+          {{ event.capacity === 0 ? 'Full' : (event.date | date:'shortDate') }}
+        </span>
+        <div class="card-body">
+          <h5 class="card-title">{{ event.title }}</h5>
+          <p class="card-text">{{ event.description | slice:0:100 }}...</p>
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <small class="text-muted">
+              <i class="bi bi-calendar"></i> {{ event.date | date:'mediumDate' }}
+            </small>
+            <small class="text-muted">
+              <i class="bi bi-geo-alt"></i> {{ event.location }}
+            </small>
+          </div>
+        </div>
+        <div class="card-footer bg-transparent border-0 d-flex gap-2">
+          <button class="btn btn-outline-primary w-100" (click)="viewEventDetails(event.id!)">
+            <i class="bi bi-eye"></i> View
+          </button>
+          <button *ngIf="isOrganizer" class="btn btn-outline-secondary w-100" (click)="editEvent(event.id!)">
+            <i class="bi bi-pencil"></i> Edit
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!loading && events.length === 0" class="text-center mt-5">
+    <img src="assets/images/empty-state.svg" alt="No events" style="max-width: 220px; opacity: 0.7;" class="mb-3">
+    <p class="lead">No events found. Start by creating a new event!</p>
+  </div>
+</div> 

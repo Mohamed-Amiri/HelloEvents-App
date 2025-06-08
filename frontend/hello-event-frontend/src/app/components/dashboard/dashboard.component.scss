@@ -1,0 +1,48 @@
+.stat-card {
+  border-radius: 1.25rem;
+  box-shadow: 0 2px 16px rgba(80, 80, 120, 0.09);
+  background: #fff;
+  transition: transform 0.15s, box-shadow 0.15s;
+  &:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 8px 32px rgba(80, 80, 120, 0.13);
+  }
+}
+
+.event-card {
+  border-radius: 1.25rem;
+  box-shadow: 0 2px 16px rgba(80, 80, 120, 0.09);
+  overflow: hidden;
+  border: none;
+  background: #fff;
+  transition: transform 0.2s, box-shadow 0.2s;
+  &:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 8px 32px rgba(80, 80, 120, 0.13);
+  }
+}
+
+.card-img-top {
+  border-top-left-radius: 1.25rem;
+  border-top-right-radius: 1.25rem;
+}
+
+.badge.bg-gradient {
+  background: linear-gradient(90deg, #6a82fb 0%, #fc5c7d 100%) !important;
+  color: #fff;
+  font-weight: 500;
+  font-size: 1rem;
+  border-radius: 2rem;
+  box-shadow: 0 2px 8px rgba(106, 130, 251, 0.12);
+}
+
+.btn-outline-primary {
+  transition: transform 0.15s;
+  &:hover {
+    transform: scale(1.04);
+  }
+}
+
+img[alt="No events"] {
+  filter: grayscale(0.2) brightness(1.1);
+} 

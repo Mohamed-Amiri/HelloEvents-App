@@ -1,0 +1,95 @@
+<div class="container py-4">
+  <div class="mb-4">
+    <h1 class="fw-bold mb-1"><i class="bi bi-speedometer2 text-primary me-2"></i> Dashboard</h1>
+    <p class="text-muted">Welcome to your event management dashboard!</p>
+  </div>
+
+  <div class="row g-4 mb-4">
+    <div class="col-6 col-md-3">
+      <div class="card text-center shadow-sm border-0 stat-card">
+        <div class="card-body">
+          <i class="bi bi-calendar2-event-fill fs-2 text-primary mb-2"></i>
+          <h3 class="fw-bold mb-0">{{ stats.total }}</h3>
+          <span class="text-muted">Total Events</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="card text-center shadow-sm border-0 stat-card">
+        <div class="card-body">
+          <i class="bi bi-clock-history fs-2 text-success mb-2"></i>
+          <h3 class="fw-bold mb-0">{{ stats.upcoming }}</h3>
+          <span class="text-muted">Upcoming</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="card text-center shadow-sm border-0 stat-card">
+        <div class="card-body">
+          <i class="bi bi-calendar-check fs-2 text-info mb-2"></i>
+          <h3 class="fw-bold mb-0">{{ stats.past }}</h3>
+          <span class="text-muted">Past</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="card text-center shadow-sm border-0 stat-card">
+        <div class="card-body">
+          <i class="bi bi-x-circle fs-2 text-danger mb-2"></i>
+          <h3 class="fw-bold mb-0">{{ stats.full }}</h3>
+          <span class="text-muted">Full</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex gap-3 mb-4">
+    <button class="btn btn-primary px-4" (click)="goToCreateEvent()">
+      <i class="bi bi-plus-circle me-1"></i> Create Event
+    </button>
+    <button class="btn btn-outline-primary px-4" (click)="goToEvents()">
+      <i class="bi bi-list-ul me-1"></i> View All Events
+    </button>
+  </div>
+
+  <div class="mb-3">
+    <h4 class="fw-bold mb-3"><i class="bi bi-stars text-warning me-2"></i> Recent Events</h4>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+      <div class="col" *ngFor="let event of recentEvents">
+        <div class="card h-100 event-card position-relative">
+          <img [src]="event.imageUrl || 'assets/images/default-event.jpg'"
+               class="card-img-top"
+               [alt]="event.title"
+               style="height: 160px; object-fit: cover;">
+          <span class="badge bg-gradient position-absolute top-0 end-0 m-3 px-3 py-2 fs-6 shadow-sm"
+                [ngClass]="{
+                  'bg-success': event.capacity > 0,
+                  'bg-danger': event.capacity === 0
+                }">
+            {{ event.capacity === 0 ? 'Full' : (event.date | date:'shortDate') }}
+          </span>
+          <div class="card-body">
+            <h5 class="card-title">{{ event.title }}</h5>
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <small class="text-muted">
+                <i class="bi bi-calendar"></i> {{ event.date | date:'mediumDate' }}
+              </small>
+              <small class="text-muted">
+                <i class="bi bi-geo-alt"></i> {{ event.location }}
+              </small>
+            </div>
+          </div>
+          <div class="card-footer bg-transparent border-0 d-flex gap-2">
+            <a class="btn btn-outline-primary w-100" [routerLink]="['/events', event.id]">
+              <i class="bi bi-eye"></i> View
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="recentEvents.length === 0" class="text-center mt-4">
+      <img src="assets/images/empty-state.svg" alt="No events" style="max-width: 180px; opacity: 0.7;" class="mb-3">
+      <p class="lead">No recent events.</p>
+    </div>
+  </div>
+</div> 

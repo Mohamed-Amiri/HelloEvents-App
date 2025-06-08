@@ -1,44 +1,42 @@
 package org.example.helloevent.service;
 
-import org.example.helloevent.Entity.Evenement;
+import org.example.helloevent.entity.Evenement;
 import org.example.helloevent.repository.EvenementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EvenementService {
 
+    private EvenementRepository evenementRepository;
+
     @Autowired
-    EvenementRepository evenementRepository;
-
-    public static List<Evenement> getAllEvenement() {
-        return null;
+    public EvenementService(EvenementRepository evenementRepository){
+        this.evenementRepository = evenementRepository;
     }
 
-    public static Evenement getAllEvenementById(Object id) {
-        return null;
+
+    public  List<Evenement> getAllEvenement() {
+        return evenementRepository.findAll();
     }
 
-    public static ResponseEntity deletEvenement(Evenement evenementToDelet) {
-        return null;
+    public Optional<Evenement> getEvenementById(Long id) {
+        return evenementRepository.findById(id);
     }
 
-    List<Evenement> GetALLEvenement() {
-        return null;
+    public  Evenement saveEvenement(Evenement evenement) {
+        return evenementRepository.save(evenement);
     }
 
-    public static Void saveEvenement(Evenement evenement) {
-        return null;
-    }
-
-    Evenement getEvenement(long id) {
-        return null;
-    }
-
-    void deleteEvenement(long id) {
-
+    public void deleteEvenement(Long id) {
+        if(evenementRepository.existsById(id)) {
+            evenementRepository.deleteById(id);
+        } else {
+            throw new RuntimeException("Evenement not found with id: " + id);
+        }
     }
 }

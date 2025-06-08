@@ -1,24 +1,18 @@
-package org.example.helloevent.Entity;
+package org.example.helloevent.entity;
 
-import jakarta.persistence.DiscriminatorValue;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
 @DiscriminatorValue("CLIENT")
 public class Client extends User {
-    private String name;
-    @OneToMany(
-            mappedBy = "client"
-    )
-    private List<Reservation> reservations;
-    @Id
-    private Long id;
 
-    public Client() {
-    }
+    private String name;
+
+    @OneToMany(mappedBy = "client")
+    private List<Reservation> reservations;
+
+    public Client() {}
 
     public Client(String name, String email, String password) {
         this.name = name;
@@ -26,8 +20,10 @@ public class Client extends User {
         this.password = password;
     }
 
+    // 🔹 Getters & Setters
+
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public void setName(String name) {
@@ -35,18 +31,10 @@ public class Client extends User {
     }
 
     public List<Reservation> getReservations() {
-        return this.reservations;
+        return reservations;
     }
 
     public void setReservations(List<Reservation> reservations) {
         this.reservations = reservations;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
     }
 }

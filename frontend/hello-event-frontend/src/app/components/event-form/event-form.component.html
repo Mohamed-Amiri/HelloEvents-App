@@ -1,0 +1,141 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title text-center mb-4">
+            {{ isEditMode ? 'Edit Event' : 'Create New Event' }}
+          </h2>
+
+          <div *ngIf="loading" class="text-center">
+            <div class="spinner-border text-primary" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+
+          <div *ngIf="error" class="alert alert-danger" role="alert">
+            {{ error }}
+          </div>
+
+          <form [formGroup]="eventForm" (ngSubmit)="onSubmit()" *ngIf="!loading">
+            <div class="mb-3">
+              <label for="title" class="form-label">Title</label>
+              <input
+                type="text"
+                class="form-control"
+                id="title"
+                formControlName="title"
+                [ngClass]="{'is-invalid': eventForm.get('title')?.invalid && eventForm.get('title')?.touched}"
+              >
+              <div class="invalid-feedback" *ngIf="eventForm.get('title')?.invalid && eventForm.get('title')?.touched">
+                {{ getErrorMessage('title') }}
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <textarea
+                class="form-control"
+                id="description"
+                rows="4"
+                formControlName="description"
+                [ngClass]="{'is-invalid': eventForm.get('description')?.invalid && eventForm.get('description')?.touched}"
+              ></textarea>
+              <div class="invalid-feedback" *ngIf="eventForm.get('description')?.invalid && eventForm.get('description')?.touched">
+                {{ getErrorMessage('description') }}
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="date" class="form-label">Date</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="date"
+                  formControlName="date"
+                  [ngClass]="{'is-invalid': eventForm.get('date')?.invalid && eventForm.get('date')?.touched}"
+                >
+                <div class="invalid-feedback" *ngIf="eventForm.get('date')?.invalid && eventForm.get('date')?.touched">
+                  {{ getErrorMessage('date') }}
+                </div>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label for="location" class="form-label">Location</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="location"
+                  formControlName="location"
+                  [ngClass]="{'is-invalid': eventForm.get('location')?.invalid && eventForm.get('location')?.touched}"
+                >
+                <div class="invalid-feedback" *ngIf="eventForm.get('location')?.invalid && eventForm.get('location')?.touched">
+                  {{ getErrorMessage('location') }}
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="capacity" class="form-label">Capacity</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="capacity"
+                  formControlName="capacity"
+                  [ngClass]="{'is-invalid': eventForm.get('capacity')?.invalid && eventForm.get('capacity')?.touched}"
+                >
+                <div class="invalid-feedback" *ngIf="eventForm.get('capacity')?.invalid && eventForm.get('capacity')?.touched">
+                  {{ getErrorMessage('capacity') }}
+                </div>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label for="price" class="form-label">Price ($)</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="price"
+                  formControlName="price"
+                  [ngClass]="{'is-invalid': eventForm.get('price')?.invalid && eventForm.get('price')?.touched}"
+                >
+                <div class="invalid-feedback" *ngIf="eventForm.get('price')?.invalid && eventForm.get('price')?.touched">
+                  {{ getErrorMessage('price') }}
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="imageUrl" class="form-label">Image URL (optional)</label>
+              <input
+                type="url"
+                class="form-control"
+                id="imageUrl"
+                formControlName="imageUrl"
+                placeholder="https://example.com/image.jpg"
+              >
+            </div>
+
+            <div class="d-grid gap-2">
+              <button
+                type="submit"
+                class="btn btn-primary"
+                [disabled]="eventForm.invalid || loading"
+              >
+                {{ isEditMode ? 'Update Event' : 'Create Event' }}
+              </button>
+              <button
+                type="button"
+                class="btn btn-outline-secondary"
+                routerLink="/events"
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

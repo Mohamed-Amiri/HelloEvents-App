@@ -1,26 +1,24 @@
-package org.example.helloevent.Entity;
+package org.example.helloevent.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
+
 import java.util.List;
 
 @Entity
 public class Evenement {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String titre;
     private String description;
     private String location;
     private String category;
+
     @ManyToOne
     private Admin admin;
-    @OneToMany(
-            mappedBy = "evenement"
-    )
+
+    @OneToMany(mappedBy = "evenement")
     private List<Reservation> reservations;
 
     public Evenement(Long id, String titre, String description, String location, String category, Admin admin, List<Reservation> reservations) {
@@ -37,7 +35,7 @@ public class Evenement {
     }
 
     public Long getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(Long id) {
@@ -45,7 +43,7 @@ public class Evenement {
     }
 
     public String getTitre() {
-        return this.titre;
+        return titre;
     }
 
     public void setTitre(String titre) {
@@ -53,7 +51,7 @@ public class Evenement {
     }
 
     public String getDescription() {
-        return this.description;
+        return description;
     }
 
     public void setDescription(String description) {
@@ -61,7 +59,7 @@ public class Evenement {
     }
 
     public String getLocation() {
-        return this.location;
+        return location;
     }
 
     public void setLocation(String location) {
@@ -69,7 +67,7 @@ public class Evenement {
     }
 
     public String getCategory() {
-        return this.category;
+        return category;
     }
 
     public void setCategory(String category) {
@@ -77,7 +75,7 @@ public class Evenement {
     }
 
     public Admin getAdmin() {
-        return this.admin;
+        return admin;
     }
 
     public void setAdmin(Admin admin) {
@@ -85,18 +83,12 @@ public class Evenement {
     }
 
     public List<Reservation> getReservations() {
-        return this.reservations;
+        return reservations;
     }
 
     public void setReservations(List<Reservation> reservations) {
         this.reservations = reservations;
     }
 
-    public Evenement orElseThrows(Object productNotFound) {
-        return null;
-    }
-
-    public Evenement orElseThrow(Object eventNotFound) {
-        return null;
-    }
 }
+

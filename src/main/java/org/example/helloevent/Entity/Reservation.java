@@ -1,20 +1,25 @@
-package org.example.helloevent.Entity;
+package org.example.helloevent.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+
 import java.time.LocalDateTime;
 
 @Entity
 public class Reservation {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @ManyToOne
     private Client client;
+
     @ManyToOne
     private Evenement evenement;
+
     private LocalDateTime reservationDate;
 
     public Reservation(Long id, Client client, Evenement evenement, LocalDateTime reservationDate) {
@@ -28,7 +33,7 @@ public class Reservation {
     }
 
     public Long getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(Long id) {
@@ -36,7 +41,7 @@ public class Reservation {
     }
 
     public Client getClient() {
-        return this.client;
+        return client;
     }
 
     public void setClient(Client client) {
@@ -44,7 +49,7 @@ public class Reservation {
     }
 
     public Evenement getEvenement() {
-        return this.evenement;
+        return evenement;
     }
 
     public void setEvenement(Evenement evenement) {
@@ -52,10 +57,11 @@ public class Reservation {
     }
 
     public LocalDateTime getReservationDate() {
-        return this.reservationDate;
+        return reservationDate;
     }
 
     public void setReservationDate(LocalDateTime reservationDate) {
         this.reservationDate = reservationDate;
     }
 }
+

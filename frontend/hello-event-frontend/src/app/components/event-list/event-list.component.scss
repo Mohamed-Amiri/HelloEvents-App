@@ -1,0 +1,53 @@
+.event-card {
+  transition: transform 0.2s, box-shadow 0.2s;
+  border-radius: 1.25rem;
+  box-shadow: 0 2px 16px rgba(80, 80, 120, 0.09);
+  overflow: hidden;
+  border: none;
+  background: #fff;
+  &:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 8px 32px rgba(80, 80, 120, 0.13);
+  }
+}
+
+.card-img-top {
+  border-top-left-radius: 1.25rem;
+  border-top-right-radius: 1.25rem;
+}
+
+.badge.bg-gradient {
+  background: linear-gradient(90deg, #6a82fb 0%, #fc5c7d 100%) !important;
+  color: #fff;
+  font-weight: 500;
+  font-size: 1rem;
+  border-radius: 2rem;
+  box-shadow: 0 2px 8px rgba(106, 130, 251, 0.12);
+}
+
+.card-title {
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.card-text {
+  color: #6c757d;
+  font-size: 0.97rem;
+  line-height: 1.5;
+}
+
+.btn-outline-primary, .btn-outline-secondary {
+  transition: transform 0.15s;
+  &:hover {
+    transform: scale(1.04);
+  }
+}
+
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+}
+
+img[alt="No events"] {
+  filter: grayscale(0.2) brightness(1.1);
+} 
